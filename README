@@ -1,1 +1,20 @@
 A rails RESTful API for NASA's Vision Workbench suite
+
+OK, let's not assume we're storing images. So we don't need attachment_fu or anything. 
+
+Steps:
+
+- client submits request with 2 image URLs and 
+- see if we already have an entry for the image based on filename and other tags? can we do much of this without downloading the image?
+- temporarily download the images
+- find and match interest points
+- create Image and InterestPoint objects in db
+- return id for process
+- upon process completion, delete stored images
+
+- client can ask for process progress. when state = 'complete' it may request the final data
+- return Image unique id and list of interest points and coordinates with regard to image top-left
+
+On the other hand, if we offer uploads without a URL for each image (possible need), we need attachment_fu, and might as well always have a local copy of the image. So we might as well store them.
+
+
