@@ -1,20 +1,64 @@
 A rails RESTful API for NASA's Vision Workbench suite
 
-OK, let's not assume we're storing images. So we don't need attachment_fu or anything. 
-
-Steps:
+## Process ##
 
 - client submits request with 2 image URLs and 
 - see if we already have an entry for the image based on filename and other tags? can we do much of this without downloading the image?
 - temporarily download the images
+- store Image:
+	- captured_on, name, exif_data (text field), progress ('ipfinding','ipmatching','complete')
+- store SharedInterestPoint
+	- image_1_id, image_2_id, x1, y1, x2, y2
 - find and match interest points
-- create Image and InterestPoint objects in db
-- return id for process
-- upon process completion, delete stored images
+- create Image and SharedInterestPoint objects in db
+- return id for image, plus status
 
 - client can ask for process progress. when state = 'complete' it may request the final data
 - return Image unique id and list of interest points and coordinates with regard to image top-left
 
-On the other hand, if we offer uploads without a URL for each image (possible need), we need attachment_fu, and might as well always have a local copy of the image. So we might as well store them.
+## Models ##
+
+Image
+	- (basic atttachment_fu)
+
+script/generate scaffold Image parent_id:integer content_type:string filename:string thumbnail:string size:integer width:integer height:integer captured_on:timestamp exif_data:text progress:string
+	
+SharedInterestPoint
+
+script/generate scaffold SharedInterestPoint image_1_id:integer image_2_id:integer x1:integer y1:integer x2:integer y2:integer interest:float
+
+## Vision Workbench ipfind/ipmatch output ##
+
+Interest Points are identified by VW's ipfind and stored in binary foo.vwip files
+
+* Int - Number of interest points.
+-- repeatedly for every ip ---
+* Float - x location
+* Float - y location
+* Int - integer x location
+* Int - integer y location
+* Float - orientation (Direction in radians of the feature's major axis. Used to calculate descriptor.)
+* Float - scale (Unitless number of size.)
+* Float - interest (Unitless number of interesting-ness.)
+* Char - polarity (Not really used)
+* Unsigned - Octave
+* Unsigned - Scale Level
+* Int - size of descriptor
+-- repeatedly for every element of descriptor ---
+* Float - element of descriptor
+
+Matches are identified by VW's ipmatch and stored in binary foo.match files
+
+
+
+These can be read by Ruby like so:
+
+>> file = File.new('public/test/mit-google__mit-ours.match','r')
+=> #<File:public/test/mit-google__mit-ours.match>
+>> field = file.read(8).unpack("I")
+=> [327680]
+
+All types are listed here: http://ruby-doc.org/core/classes/String.html
+
 
 

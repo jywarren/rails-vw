@@ -1,0 +1,38 @@
+<h1>Listing images</h1>
+
+<table>
+  <tr>
+    <th>Parent</th>
+    <th>Content type</th>
+    <th>Filename</th>
+    <th>Thumbnail</th>
+    <th>Size</th>
+    <th>Width</th>
+    <th>Height</th>
+    <th>Captured on</th>
+    <th>Exif data</th>
+    <th>Progress</th>
+  </tr>
+
+<% @images.each do |image| %>
+  <tr>
+    <td><%=h image.parent_id %></td>
+    <td><%=h image.content_type %></td>
+    <td><%=h image.filename %></td>
+    <td><%=h image.thumbnail %></td>
+    <td><%=h image.size %></td>
+    <td><%=h image.width %></td>
+    <td><%=h image.height %></td>
+    <td><%=h image.captured_on %></td>
+    <td><%=h image.exif_data %></td>
+    <td><%=h image.progress %></td>
+    <td><%= link_to 'Show', image %></td>
+    <td><%= link_to 'Edit', edit_image_path(image) %></td>
+    <td><%= link_to 'Destroy', image, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New image', new_image_path %>

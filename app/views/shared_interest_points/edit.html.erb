@@ -1,0 +1,40 @@
+<h1>Editing shared_interest_point</h1>
+
+<% form_for(@shared_interest_point) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :image_1_id %><br />
+    <%= f.text_field :image_1_id %>
+  </p>
+  <p>
+    <%= f.label :image_2_id %><br />
+    <%= f.text_field :image_2_id %>
+  </p>
+  <p>
+    <%= f.label :x1 %><br />
+    <%= f.text_field :x1 %>
+  </p>
+  <p>
+    <%= f.label :y1 %><br />
+    <%= f.text_field :y1 %>
+  </p>
+  <p>
+    <%= f.label :x2 %><br />
+    <%= f.text_field :x2 %>
+  </p>
+  <p>
+    <%= f.label :y2 %><br />
+    <%= f.text_field :y2 %>
+  </p>
+  <p>
+    <%= f.label :interest %><br />
+    <%= f.text_field :interest %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @shared_interest_point %> |
+<%= link_to 'Back', shared_interest_points_path %>

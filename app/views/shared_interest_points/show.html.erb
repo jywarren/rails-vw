@@ -1,0 +1,38 @@
+<p>
+  <b>Image 1:</b>
+  <%=h @shared_interest_point.image_1_id %>
+</p>
+
+<p>
+  <b>Image 2:</b>
+  <%=h @shared_interest_point.image_2_id %>
+</p>
+
+<p>
+  <b>X1:</b>
+  <%=h @shared_interest_point.x1 %>
+</p>
+
+<p>
+  <b>Y1:</b>
+  <%=h @shared_interest_point.y1 %>
+</p>
+
+<p>
+  <b>X2:</b>
+  <%=h @shared_interest_point.x2 %>
+</p>
+
+<p>
+  <b>Y2:</b>
+  <%=h @shared_interest_point.y2 %>
+</p>
+
+<p>
+  <b>Interest:</b>
+  <%=h @shared_interest_point.interest %>
+</p>
+
+
+<%= link_to 'Edit', edit_shared_interest_point_path(@shared_interest_point) %> |
+<%= link_to 'Back', shared_interest_points_path %>

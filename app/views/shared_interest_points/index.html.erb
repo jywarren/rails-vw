@@ -1,0 +1,32 @@
+<h1>Listing shared_interest_points</h1>
+
+<table>
+  <tr>
+    <th>Image 1</th>
+    <th>Image 2</th>
+    <th>X1</th>
+    <th>Y1</th>
+    <th>X2</th>
+    <th>Y2</th>
+    <th>Interest</th>
+  </tr>
+
+<% @shared_interest_points.each do |shared_interest_point| %>
+  <tr>
+    <td><%=h shared_interest_point.image_1_id %></td>
+    <td><%=h shared_interest_point.image_2_id %></td>
+    <td><%=h shared_interest_point.x1 %></td>
+    <td><%=h shared_interest_point.y1 %></td>
+    <td><%=h shared_interest_point.x2 %></td>
+    <td><%=h shared_interest_point.y2 %></td>
+    <td><%=h shared_interest_point.interest %></td>
+    <td><%= link_to 'Show', shared_interest_point %></td>
+    <td><%= link_to 'Edit', edit_shared_interest_point_path(shared_interest_point) %></td>
+    <td><%= link_to 'Destroy', shared_interest_point, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New shared_interest_point', new_shared_interest_point_path %>

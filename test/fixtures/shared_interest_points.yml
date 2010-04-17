@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  image_1_id: 1
+  image_2_id: 1
+  x1: 1
+  y1: 1
+  x2: 1
+  y2: 1
+  interest: 1.5
+
+two:
+  image_1_id: 1
+  image_2_id: 1
+  x1: 1
+  y1: 1
+  x2: 1
+  y2: 1
+  interest: 1.5
